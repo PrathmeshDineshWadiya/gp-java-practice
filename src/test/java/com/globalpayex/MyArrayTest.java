@@ -101,4 +101,72 @@ class MyArrayTest {
         var expected = Arrays.asList(10,20,4);
         assertEquals(expected,evenNumbers);
     }
+
+    @Test
+    void testDeductIntBy1(){
+        var nos = Arrays.asList(10,2,1,4,9);
+        var streamInt = nos.stream()
+                .map(element -> element -1)
+                .collect(Collectors.toList());
+        var expected = Arrays.asList(9,1,0,3,8);
+        assertEquals(expected,streamInt);
+        System.out.println(streamInt);
+
+    }
+
+    @Test
+    void testFilterPlusMap(){
+        var nos = Arrays.asList(10,2,1,4,9);
+        var stream1 = nos.stream()
+                .filter(element -> element % 2 != 0 && element > 1)
+                .map(element -> element * element)
+                .collect(Collectors.toList());
+        var expected = Arrays.asList(81);
+        assertEquals(expected,stream1);
+
+    }
+
+    @Test
+    void testFemaleStudents(){
+        var students = Arrays.asList(
+                new Student("Tom",1,'m',90),
+                new Student("Alice",2,'f',77),
+                new Student("Jolly",3,'f',54),
+                new Student("Henry",4,'m',60)
+        );
+
+        var fs = students.stream()
+                .filter(f -> f.getGender() == 'f')
+                .map(s -> s.getName())
+                .collect(Collectors.joining(","));
+
+        var expected = "Alice,Jolly";
+        assertEquals(expected,fs);
+    }
+//    @Test
+//    void testStudents(){
+//        var students = Arrays.asList(
+//                new Student("Prathmesh",164,'m',90),
+//                new Student("Jill",145,'f',55),
+//                new Student("Aditya",146,'m',74),
+//                new Student("ALice",131,'f',70)
+//        );
+//
+//        var female = students.stream()
+//                .filter(student -> student.getGender() == 'f')
+//                .map(student -> student.getName())
+//                .collect(Collectors.joining(","));
+//        var expected = "Jill,Alice";
+//        assertEquals(expected,female);
+////        var s = students.stream()
+////                .filter(student -> student.getGender() == 'f')
+////                .sorted((s1,s2) -> new )
+////        var expected = Arrays.asList(
+////                new Student("Jill",145,'f',75),
+////                new Student("ALice",131,'f',55)
+////                );
+//
+//    }
+
+
 }

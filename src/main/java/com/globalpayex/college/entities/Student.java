@@ -2,20 +2,22 @@ package com.globalpayex.college.entities;
 
 import com.globalpayex.Grade;
 
+import java.util.Objects;
+
 public class Student extends CollegeUser {
 //    String name;
 //    private char gender;
-    int roll;
+    public int roll;
     public int marks;
     static int count;
 
-    @Override
+    /* @Override
     public String toString() {
         return "Student{" +
                 "roll=" + roll +
                 ", marks=" + marks +
                 '}';
-    }
+    } */
 
     public Student(String name, int roll, char gender, int marks) {
         super(name,gender);
@@ -77,6 +79,19 @@ public class Student extends CollegeUser {
 
     public char getGender(){
         return this.gender;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return roll == student.roll;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(roll);
     }
 
 //    public static class StudentsOperation {
